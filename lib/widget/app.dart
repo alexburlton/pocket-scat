@@ -21,5 +21,5 @@ class App extends StatelessWidget {
       ),
       home: SearchableQuotes(_allQuotes));
 
-  AudioPlayerState getAudioPlayerState() => getPlaybackState();
+  AudioPlayerState? getAudioPlayerState() => getPlaybackState();
 }

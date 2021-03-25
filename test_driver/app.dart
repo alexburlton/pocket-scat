@@ -1,4 +1,4 @@
-import 'package:audioplayers/audioplayers.dart';
+/*import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_driver/driver_extension.dart';
 import 'package:pocket_scat/util/quote.dart';
@@ -30,7 +30,6 @@ String handleMessage(App app) {
   }
 }
 
-// ignore: missing_return
 String _parsePlayerState(AudioPlayerState state) {
   switch(state) {
     case AudioPlayerState.PLAYING:
@@ -43,3 +42,4 @@ String _parsePlayerState(AudioPlayerState state) {
       return 'COMPLETED';
   }
 }
+*/

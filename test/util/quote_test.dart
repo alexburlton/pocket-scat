@@ -1,11 +1,18 @@
+import 'package:audioplayers/audio_cache.dart';
+import 'package:audioplayers/audioplayers.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:pocket_scat/util/file_sharer.dart';
 import 'package:pocket_scat/util/injected_things.dart';
 import 'package:pocket_scat/util/quote_source.dart';
 import 'package:pocket_scat/util/quote.dart';
 
 import 'mocks.dart';
+import 'quote_test.mocks.dart';
 
+@GenerateMocks([AudioCache, AudioPlayer, FileSharer])
 void main() {
   group('search', () {
     test('should always contain an empty search', () {
@@ -55,8 +62,10 @@ void main() {
 
   group('playback', () {
     test('should play the associated audio file', () async {
+      WidgetsFlutterBinding.ensureInitialized();
+
       const quote = Quote('file_name', 'Some text', SRC_TOAST, '');
-      audioCache = MockAudioCache();
+      final audioCache = MockAudioCache();
       await quote.play();
 
       verify(audioCache.play('file_name.wav'));
@@ -70,7 +79,8 @@ void main() {
       audioCache = MockAudioCache();
       final audioPlayer = MockAudioPlayer();
 
-      when(audioCache.play(any)).thenAnswer((_) => Future.value(audioPlayer));
+      when(audioCache.play('file_name.wav')).thenAnswer((_) => Future.value(audioPlayer));
+      when(audioCache.play('other_file.wav')).thenAnswer((_) => Future.value(audioPlayer));
 
       await quoteOne.play();
       verify(audioCache.play('file_name.wav'));

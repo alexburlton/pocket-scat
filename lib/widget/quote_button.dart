@@ -23,9 +23,7 @@ class QuoteButton extends StatelessWidget {
               )),
           _buildTextOverlay(context)
         ]),
-        onPressed: () {
-          _quote.play();
-        },
+        onPressed: _quote.play,
       ));
 
   Widget _buildTextOverlay(BuildContext context) => Positioned(

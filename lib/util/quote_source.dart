@@ -7,14 +7,13 @@ class QuoteSource {
   final String _searchTerms;
 
   const QuoteSource(this._name, this._category, this.imageName,
-      [this._searchTerms]);
+      [this._searchTerms = '']);
 
   bool containsSearchTerm(String searchTerm) {
     final lowerCased = searchTerm.toLowerCase();
     return _name.toLowerCase().contains(lowerCased) ||
-        (_searchTerms != null &&
-            _searchTerms.toLowerCase().contains(lowerCased)) ||
-        QuoteCategoryDesc[_category].toLowerCase().contains(lowerCased);
+        (_searchTerms.toLowerCase().contains(lowerCased)) ||
+        _category.description().toLowerCase().contains(lowerCased);
   }
 }
 

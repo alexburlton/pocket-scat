@@ -5,14 +5,14 @@ import 'package:pocket_scat/util/injected_things.dart';
 import 'quote_source.dart';
 
 //Keep a reference to the latest audioPlayer so we can stop it if another quote is played in the meantime
-AudioPlayer _audioPlayer;
+AudioPlayer? _audioPlayer;
 
 class Quote {
   final String filename;
   final String name;
   final QuoteSource source;
   final String searchStr;
-  final String imageName;
+  final String? imageName;
 
   const Quote(this.filename, this.name, this.source, this.searchStr,
       [this.imageName]);
@@ -46,4 +46,4 @@ class Quote {
   }
 }
 
-AudioPlayerState getPlaybackState() => _audioPlayer?.state;
+AudioPlayerState? getPlaybackState() => _audioPlayer?.state;
